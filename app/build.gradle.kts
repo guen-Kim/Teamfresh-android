@@ -52,6 +52,11 @@ dependencies {
     androidTestImplementation(TestTool.ANDROID_X_JUNIT)
     androidTestImplementation(TestTool.ANDROID_X_ESPRESSO)
 
+    //jetpack navigation components
+    implementation(NavComponent.NAVIGATION_FRAGMENT)
+    implementation(NavComponent.NAVIGATION_UI)
+    implementation(NavComponent.NAVIGATION_KOTLIN)
+
     // dager hilt
     implementation(DaggerHilt.DAGGER_HILT)
     kapt(DaggerHilt.DAGGER_HILT_COMPILER)

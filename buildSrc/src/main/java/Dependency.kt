@@ -69,7 +69,7 @@ object NavComponent {
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
     const val NAVIGATION_DYNAMIC_FEATURES_FRAGMENT = "androidx.navigation:navigation-dynamic-features-fragment:$NAV_VERSION"
     const val NAVIGATION_TESTING = "androidx.navigation:navigation-testing:$NAV_VERSION"
-    const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:2.4.0-alpha10"
+    const val NAVIGATION_KOTLIN = "androidx.fragment:fragment-ktx:1.4.1:$NAV_VERSION"
 }
 
 object TestTool {
