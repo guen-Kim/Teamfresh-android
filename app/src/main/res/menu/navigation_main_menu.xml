@@ -2,29 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_category"
+        android:id="@+id/categoryFragment"
         android:enabled="true"
         android:icon="@drawable/icon_category_on"
         android:title="카테고리"/>
+
+<!--  아래는 동일한 빈 프래그먼트 -->
     <item
-        android:id="@+id/navigation_favor"
+        android:id="@+id/blankFragment"
         android:enabled="true"
         android:icon="@drawable/icon_favor_off"
         android:title="즐겨찾기"/>
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@id/blankFragment"
         android:enabled="true"
         android:icon="@drawable/icon_home_off"
         android:title="홈"/>
     <item
-        android:id="@+id/navigation_cart"
+        android:id="@id/blankFragment"
         android:enabled="true"
-        android:icon="@drawable/icon_category_on"
+        android:icon="@drawable/icon_backet_off"
         android:title="장바구니"/>
 
     <item
-        android:id="@+id/navigation_user"
+        android:id="@id/blankFragment"
         android:enabled="true"
         android:icon="@drawable/icon_user_off"
         android:title="내 정보"/>
