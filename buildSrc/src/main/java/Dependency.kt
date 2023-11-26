@@ -26,7 +26,7 @@ object KTX {
 }
 
 object Google {
-    const val MATERIAL = "com.google.android.material:material:1.4.0"
+    const val MATERIAL = "com.google.android.material:material:1.11.0-alpha01"
 }
 
 object Test {
