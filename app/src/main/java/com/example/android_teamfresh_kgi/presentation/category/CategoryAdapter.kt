@@ -1,13 +1,12 @@
 package com.example.android_teamfresh_kgi.presentation.category
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android_teamfresh_kgi.R
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryBarSectionBinding
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryMenuSectionBinding
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryTitleSectionBinding
-
 
 private const val VIEWTYPE_MENU = 0
 private const val VIEWTYPE_BAR = 1
@@ -58,18 +57,20 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun submitItemList(items: List<CategoryItemData>) {
-
+    fun submitItemList(items: MutableList<CategoryItemData>) {
         // menu와 quick menu 사이에 bar 추가하기
-
-
-
+        for (i in 0 until items.size) {
+            if (items[i] !is CategoryMenu) {
+                items.add(i, CategoryBar("one")) // 중간에 bar 삽입
+                break
+            }
+        }
         // update DataSet
-
-
+        categoryItems.addAll(items)
+        for (i in 0 until categoryItems.size) {
+            Log.d("test", categoryItems[i].toString())
+        }
     }
-
-
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -99,7 +100,7 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CategoryMenu) {
-            binding.ivCategoryImage.setImageResource(R.drawable.badge_new)
+            //binding.ivCategoryImage.setImageResource(R.drawable.badge_new)
             binding.tvCategoryName.text = item.name
             binding.executePendingBindings()
         }
@@ -108,7 +109,9 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class BarViewHolder(private val binding: ItemCategoryBarSectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryBar) {}
+        fun bind(item: CategoryBar) {
+            binding.executePendingBindings()
+        }
     }
 
     inner class TitleViewHolder(private val binding: ItemCategoryTitleSectionBinding) :
@@ -116,6 +119,9 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(item: CategoryTitle) {
             binding.tvCategoryTitle.text = item.title
+            binding.executePendingBindings()
         }
     }
+
+
 }
