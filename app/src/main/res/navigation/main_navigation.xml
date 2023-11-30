@@ -7,18 +7,16 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.android_teamfresh_kgi.presentation.CategoryFragment"
+        android:name="com.example.android_teamfresh_kgi.presentation.category.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category">
         <action
-            android:id="@+id/action_categoryFragment_to_blankFragment"
+            android:id="@+id/action_categoryFragment_to_blankFragment2"
             app:destination="@id/blankFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.example.android_teamfresh_kgi.presentation.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        android:label="BlankFragment" />
 
 </navigation>
