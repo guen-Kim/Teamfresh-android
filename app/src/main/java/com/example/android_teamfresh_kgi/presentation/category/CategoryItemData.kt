@@ -6,6 +6,7 @@ sealed class CategoryItemData
 data class CategoryMenu(
     val name: String,
     val image: String,
+    val type : MenuType,
 ) : CategoryItemData()
 
 data class CategoryTitle(
@@ -13,4 +14,9 @@ data class CategoryTitle(
 ) : CategoryItemData()
 
 data class CategoryBar(val bar: String) : CategoryItemData()
+
+enum class MenuType{
+    NOMAL,
+    QUICK,
+}
 
