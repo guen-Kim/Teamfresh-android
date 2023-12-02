@@ -1,4 +1,4 @@
-package com.example.android_teamfresh_kgi.data.remote.api
+package com.example.android_teamfresh_kgi.data.repository.remote.api
 
 import com.example.android_teamfresh_kgi.data.model.MajorCartegoryResponse
 import retrofit2.Response

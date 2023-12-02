@@ -1,4 +1,4 @@
-package com.example.android_teamfresh_kgi.data.utils
+package com.example.android_teamfresh_kgi.data.utils.base
 
 import android.util.Log
 import com.example.android_teamfresh_kgi.domain.utils.ErrorType
