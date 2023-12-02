@@ -7,15 +7,17 @@ import com.example.android_teamfresh_kgi.domain.model.DomainMajorCategoryRespons
 import com.example.android_teamfresh_kgi.domain.model.DomainQuickMenuResponse
 import com.example.android_teamfresh_kgi.domain.repository.MainCategoryRepository
 import com.example.android_teamfresh_kgi.domain.utils.RemoteErrorEmitter
+import javax.inject.Inject
 
 
 /* Repository Pattern */
-class MainCategoryRepositoryImpl(
+class MainCategoryRepositoryImpl @Inject constructor(
     private val majorCategoryDataSource: MajorCategoryDataSource,
     private val quickMenuDataSource: QuickMenuDataSource
 ) :
     MainCategoryRepository {
-    override suspend fun checkMainCategory(remoteErrorEmitter: RemoteErrorEmitter): DomainMajorCategoryResponse? {
+
+    override suspend fun checkMajorCategory(remoteErrorEmitter: RemoteErrorEmitter): DomainMajorCategoryResponse? {
         return Mapper.MajorCategoryMapper(
             majorCategoryDataSource.checkMajorCategory(remoteErrorEmitter)
         )

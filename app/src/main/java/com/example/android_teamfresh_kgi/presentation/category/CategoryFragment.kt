@@ -8,18 +8,27 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android_teamfresh_kgi.R
 import com.example.android_teamfresh_kgi.databinding.FragmentCategoryBinding
 import com.example.android_teamfresh_kgi.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint //의존성 주입 요청
 class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment_category) {
+
+    private val viewModel by viewModels<CategoryViewModel>() // viewModel 주입
+
     private lateinit var notiBage: ConstraintLayout
 
     //onCreateView
     override fun init() {
+        //init databinding
+        binding.fragment = this
+
         notiBage = LayoutInflater.from(requireContext())
             .inflate(R.layout.notification_badge, null) as ConstraintLayout
         // 툴바를 액션바로 대체, noActionBar에서 menu 콜백 메서드 호출 위함.
@@ -30,6 +39,10 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
     override fun inited() {
         setToolbar()
         setRecyclerView()
+        // test
+        viewModel.loadMainCategory()
+
+
     }
 
     private fun setRecyclerView() {

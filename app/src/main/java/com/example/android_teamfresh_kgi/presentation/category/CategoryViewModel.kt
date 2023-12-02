@@ -11,9 +11,13 @@ import com.example.android_teamfresh_kgi.domain.utils.ErrorType
 import com.example.android_teamfresh_kgi.domain.utils.RemoteErrorEmitter
 import com.example.android_teamfresh_kgi.domain.utils.ScreenState
 import com.example.android_teamfresh_kgi.presentation.event.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CategoryViewModel(private val mainCategoryUseCase: CheckMainCategoryUseCase) : ViewModel(),
+
+@HiltViewModel
+class CategoryViewModel @Inject constructor(private val mainCategoryUseCase: CheckMainCategoryUseCase) : ViewModel(),
     RemoteErrorEmitter {
     init {
         loadMainCategory()
@@ -24,8 +28,8 @@ class CategoryViewModel(private val mainCategoryUseCase: CheckMainCategoryUseCas
     val apiCallEvent: LiveData<Event<ScreenState>> get() = _apiCallEvent
 
 
-    var apiCallMajorCategoryResult = DomainMajorCategoryResponse(0, "", "", "")
-    var apiCallQuickMenuResult = DomainQuickMenuResponse("", "", "", "", "", 0)
+    lateinit var apiCallMajorCategoryResult: DomainMajorCategoryResponse
+    lateinit var apiCallQuickMenuResult: DomainQuickMenuResponse
 
 
     var apiErrorType = ErrorType.UNKNOWN

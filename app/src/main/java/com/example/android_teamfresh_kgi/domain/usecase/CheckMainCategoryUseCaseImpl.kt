@@ -5,8 +5,9 @@ import com.example.android_teamfresh_kgi.domain.model.DomainQuickMenuResponse
 import com.example.android_teamfresh_kgi.domain.repository.MainCategoryRepository
 import com.example.android_teamfresh_kgi.domain.usecaseimpl.CheckMainCategoryUseCase
 import com.example.android_teamfresh_kgi.domain.utils.RemoteErrorEmitter
+import javax.inject.Inject
 
-class CheckMainCategoryUseCaseImpl(private val mainCategoryRepository: MainCategoryRepository) :
+class CheckMainCategoryUseCaseImpl @Inject constructor(private val mainCategoryRepository: MainCategoryRepository) :
     CheckMainCategoryUseCase {
     override suspend fun checkMajorCategory(remoteErrorEmitter: RemoteErrorEmitter): DomainMajorCategoryResponse? =
         mainCategoryRepository.checkMajorCategory(remoteErrorEmitter)

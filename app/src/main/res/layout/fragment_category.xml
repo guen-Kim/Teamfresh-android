@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="fragment"
+            type="com.example.android_teamfresh_kgi.presentation.category.CategoryFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
