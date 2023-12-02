@@ -1,26 +1,40 @@
 package com.example.android_teamfresh_kgi.presentation.category
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryBarSectionBinding
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryMenuSectionBinding
+import com.example.android_teamfresh_kgi.databinding.ItemCategoryQuickSectionBinding
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryTitleSectionBinding
+import com.example.android_teamfresh_kgi.presentation.model.CategoryBar
+import com.example.android_teamfresh_kgi.presentation.model.CategoryItemData
+import com.example.android_teamfresh_kgi.presentation.model.CategoryMenu
+import com.example.android_teamfresh_kgi.presentation.model.CategoryTitle
+import com.example.android_teamfresh_kgi.presentation.model.QuickMenu
 
 private const val VIEWTYPE_MENU = 0
-private const val VIEWTYPE_BAR = 1
-private const val VIEWTYPE_TITLE = 2
+private const val VIEWTYPE_QUICK = 1
+private const val VIEWTYPE_BAR = 2
+private const val VIEWTYPE_TITLE = 3
 
 class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val categoryItems = mutableListOf<CategoryItemData>()
+    private var categoryItems = mutableListOf<CategoryItemData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             VIEWTYPE_MENU -> MenuViewHolder(
                 ItemCategoryMenuSectionBinding.inflate(
+                    inflater,
+                    parent,
+                    false
+                )
+            )
+
+            VIEWTYPE_QUICK -> QuickViewHolder(
+                ItemCategoryQuickSectionBinding.inflate(
                     inflater,
                     parent,
                     false
@@ -52,24 +66,15 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         return when (categoryItems[position]) {
             is CategoryMenu -> VIEWTYPE_MENU
+            is QuickMenu -> VIEWTYPE_QUICK
             is CategoryBar -> VIEWTYPE_BAR
             else -> VIEWTYPE_TITLE
         }
     }
 
-    fun submitItemList(items: MutableList<CategoryItemData>) {
-        // menu와 quick menu 사이에 bar 추가하기
-        for (i in 0 until items.size) {
-            if (items[i] !is CategoryMenu) {
-                items.add(i, CategoryBar("one")) // 중간에 bar 삽입
-                break
-            }
-        }
-        // update DataSet
+    fun updateItemList(items: MutableList<CategoryItemData>) {
         categoryItems.addAll(items)
-        for (i in 0 until categoryItems.size) {
-            Log.d("test", categoryItems[i].toString())
-        }
+        notifyDataSetChanged()
     }
 
 
@@ -77,6 +82,11 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is MenuViewHolder -> {
                 val item = categoryItems[position] as CategoryMenu
+                holder.bind(item)
+            }
+
+            is QuickViewHolder -> {
+                val item = categoryItems[position] as QuickMenu
                 holder.bind(item)
             }
 
@@ -94,14 +104,22 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-//* Category ViewHolder Section
+/*  ViewHolder Section  */
 
     inner class MenuViewHolder(private val binding: ItemCategoryMenuSectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CategoryMenu) {
-            //binding.ivCategoryImage.setImageResource(R.drawable.badge_new)
-            binding.tvCategoryName.text = item.name
+            binding.menu = item
+            binding.executePendingBindings()
+        }
+    }
+
+    inner class QuickViewHolder(private val binding: ItemCategoryQuickSectionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: QuickMenu) {
+            binding.quick = item
             binding.executePendingBindings()
         }
     }
