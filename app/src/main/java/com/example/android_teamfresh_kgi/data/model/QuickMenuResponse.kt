@@ -1,10 +1,17 @@
 package com.example.android_teamfresh_kgi.data.model
 
 data class QuickMenuResponse(
-    val quickMenuConcScrenIden: String,
-    val quickMenuConcScrenNm: String,
-    val quickMenuImgPath: String,
-    val quickMenuMovScrenPath: String,
-    val quickMenuNm: String,
+    val data: List<DispClasItem>,
+    val message: String?
+)
+
+
+
+data class DispClasItem(
     val quickMenuSeq: Int,
+    val quickMenuNm: String,
+    val quickMenuImgPath: String,
+    val quickMenuConcScrenNm: String,
+    val quickMenuConcScrenIden: String?,
+    val quickMenuMovScrenPath: String?,
     )
