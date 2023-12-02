@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android_teamfresh_kgi.R
 import com.example.android_teamfresh_kgi.databinding.FragmentCategoryBinding
 import com.example.android_teamfresh_kgi.presentation.base.BaseFragment
+import com.example.android_teamfresh_kgi.presentation.model.CategoryBar
+import com.example.android_teamfresh_kgi.presentation.model.CategoryMenu
+import com.example.android_teamfresh_kgi.presentation.model.CategoryTitle
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -31,6 +34,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
 
         notiBage = LayoutInflater.from(requireContext())
             .inflate(R.layout.notification_badge, null) as ConstraintLayout
+
         // 툴바를 액션바로 대체, noActionBar에서 menu 콜백 메서드 호출 위함.
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
     }
@@ -39,60 +43,40 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
     override fun inited() {
         setToolbar()
         setRecyclerView()
-        // test
-        viewModel.loadMainCategory()
 
 
     }
 
     private fun setRecyclerView() {
-        // 리스트 생성
-        val arrayList = arrayListOf<CategoryItemData>()
 
-        arrayList.add(CategoryMenu("사과", "", MenuType.NOMAL))
-        arrayList.add(CategoryMenu("포도", "", MenuType.NOMAL))
-        arrayList.add(CategoryMenu("바나나", "", MenuType.NOMAL))
-        arrayList.add(CategoryMenu("자두", "", MenuType.NOMAL))
-        arrayList.add(CategoryMenu("건포도", "", MenuType.NOMAL))
-
-
-        arrayList.add(CategoryTitle("기획전/이벤트"))
-        arrayList.add(CategoryMenu("포도2", "", MenuType.QUICK))
-        arrayList.add(CategoryMenu("바나나2", "", MenuType.QUICK))
-        arrayList.add(CategoryMenu("자두2", "", MenuType.QUICK))
-        arrayList.add(CategoryMenu("건포도2", "", MenuType.QUICK))
-        arrayList.add(CategoryMenu("배고파2", "", MenuType.QUICK))
-
-
-        // 레이아웃 매니저 초기화
+        // 레이아웃 매니저 초기화, span 20
         val layoutManager = GridLayoutManager(context, 20)
 
-        // Set span size
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int =
-                if (arrayList[position] !is CategoryMenu) {
-                    // section bar or section title 이라면, 사이즈 20
-                    20
-                } else {
-                    val menuItem = arrayList[position] as CategoryMenu
-                    if (menuItem.type == MenuType.NOMAL) {
-                        // section menu 라면, 사이즈 5
-                        5
-                    } else {
-                        // section quick menu라면, 사이즈 4
-                        4
-                    }
+        with(binding.rvCategorySection){
+            viewModel.mainCategoryItem.observe(viewLifecycleOwner) {
+
+
+                // item span size 결정
+                layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int =
+                        if(it[position] is CategoryTitle ||it[position] is CategoryBar){
+                            20
+                        }else if(it[position] is CategoryMenu){
+                            5
+                        }else{
+                            4
+                        }
                 }
+                // Layout manager 설정
+                binding.rvCategorySection.layoutManager = layoutManager
+                // MainMenuitem 전달
+                val adapter = CategoryAdapter().apply {
+                    updateItemList(it.toMutableList())
+                }
+                // adapter 설정
+                binding.rvCategorySection.adapter = adapter
+            }
         }
-
-        //Set Layout manager
-        binding.rvCategorySection.layoutManager = layoutManager
-
-        // Set adapter
-        val adapter = CategoryAdapter().apply {
-            submitItemList(arrayList)
-        }
-        binding.rvCategorySection.adapter = adapter
     }
 
     private fun setToolbar() {
