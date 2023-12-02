@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="viewmodel"
+            type="com.example.android_teamfresh_kgi.presentation.category.CategoryViewModel" />
+
+        <variable
             name="quick"
             type="com.example.android_teamfresh_kgi.presentation.model.QuickMenu" />
 
@@ -15,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:onClick="@{() ->viewmodel.openQuickMenu(quick.quickMenuNm)}"
         android:orientation="vertical">
 
         <ImageView
@@ -30,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@{quick.quickMenuNm}"
-            android:textSize="12sp"
             android:textColor="@color/black"
+            android:textSize="12sp"
             tools:text="채소/과일" />
 
 

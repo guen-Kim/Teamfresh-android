@@ -7,13 +7,16 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android_teamfresh_kgi.R
 import com.example.android_teamfresh_kgi.databinding.FragmentCategoryBinding
 import com.example.android_teamfresh_kgi.presentation.base.BaseFragment
+import com.example.android_teamfresh_kgi.presentation.event.EventObserver
 import com.example.android_teamfresh_kgi.presentation.model.CategoryBar
 import com.example.android_teamfresh_kgi.presentation.model.CategoryMenu
 import com.example.android_teamfresh_kgi.presentation.model.CategoryTitle
@@ -21,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint //의존성 주입 요청
-class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment_category) {
+class CategoryFragment() : BaseFragment<FragmentCategoryBinding>(R.layout.fragment_category) {
 
     private val viewModel by viewModels<CategoryViewModel>() // viewModel 주입
 
@@ -43,34 +46,36 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
     override fun inited() {
         setToolbar()
         setRecyclerView()
+        setMenuClickEvent()
 
 
     }
+
 
     private fun setRecyclerView() {
 
         // 레이아웃 매니저 초기화, span 20
         val layoutManager = GridLayoutManager(context, 20)
 
-        with(binding.rvCategorySection){
+        with(binding.rvCategorySection) {
             viewModel.mainCategoryItem.observe(viewLifecycleOwner) {
 
 
                 // item span size 결정
                 layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int =
-                        if(it[position] is CategoryTitle ||it[position] is CategoryBar){
+                        if (it[position] is CategoryTitle || it[position] is CategoryBar) {
                             20
-                        }else if(it[position] is CategoryMenu){
+                        } else if (it[position] is CategoryMenu) {
                             5
-                        }else{
+                        } else {
                             4
                         }
                 }
                 // Layout manager 설정
                 binding.rvCategorySection.layoutManager = layoutManager
                 // MainMenuitem 전달
-                val adapter = CategoryAdapter().apply {
+                val adapter = CategoryAdapter(viewModel).apply {
                     updateItemList(it.toMutableList())
                 }
                 // adapter 설정
@@ -78,6 +83,26 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
             }
         }
     }
+
+
+    private fun setMenuClickEvent() {
+        viewModel.openQuickMenuEvent.observe(viewLifecycleOwner) {
+            shortShowToast("개발 중")
+        }
+
+        viewModel.openMajorMenuEvent.observe(viewLifecycleOwner, EventObserver{
+            findNavController().navigate(
+                R.id.action_categoryFragment_to_categoryDetailActivity, bundleOf(
+                    // key, value
+                    "KEY_CATEGORY_SEQENCE" to it.dispClasSeq,
+                )
+            )
+        })
+    }
+
+
+
+
 
     private fun setToolbar() {
         // 툴바 메뉴 생성 및 이벤트 리스너

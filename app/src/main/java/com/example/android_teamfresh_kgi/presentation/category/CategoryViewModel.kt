@@ -37,6 +37,17 @@ class CategoryViewModel @Inject constructor(private val mainCategoryUseCase: Che
     private var _mainCategoryItem = MutableLiveData<List<CategoryItemData>>()
     val mainCategoryItem: LiveData<List<CategoryItemData>> get() = _mainCategoryItem
 
+    //quickMenu item state
+    private var _openQuickMenuEvent = MutableLiveData<Event<String>>()
+    val openQuickMenuEvent: LiveData<Event<String>> get() = _openQuickMenuEvent
+
+    //MajorMenu item state
+    private var _openMajorMenuEvent = MutableLiveData<Event<CategoryMenu>>()
+    val openMajorMenuEvent: LiveData<Event<CategoryMenu>> get() = _openMajorMenuEvent
+
+
+
+
     // 카테고리 페이지
     fun loadMainCategory() =
         // 코루틴 순차적인 비동기 처리
@@ -100,6 +111,15 @@ class CategoryViewModel @Inject constructor(private val mainCategoryUseCase: Che
                 }
 
         }
+
+
+    fun openQuickMenu(name: String) {
+        _openQuickMenuEvent.value = Event(name)
+    }
+
+    fun openMajorMenu(itme: CategoryMenu) {
+        _openMajorMenuEvent.value = Event(itme)
+    }
 
 
     override fun onError(msg: String) {

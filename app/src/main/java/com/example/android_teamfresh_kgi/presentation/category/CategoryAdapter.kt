@@ -18,7 +18,7 @@ private const val VIEWTYPE_QUICK = 1
 private const val VIEWTYPE_BAR = 2
 private const val VIEWTYPE_TITLE = 3
 
-class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CategoryAdapter(private val viewModel: CategoryViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var categoryItems = mutableListOf<CategoryItemData>()
 
@@ -110,6 +110,7 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: CategoryMenu) {
+            binding.viewmodel = viewModel
             binding.menu = item
             binding.executePendingBindings()
         }
@@ -119,6 +120,7 @@ class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: QuickMenu) {
+            binding.viewmodel = viewModel
             binding.quick = item
             binding.executePendingBindings()
         }

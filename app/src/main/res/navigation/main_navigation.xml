@@ -11,12 +11,19 @@
         android:label="fragment_category"
         tools:layout="@layout/fragment_category">
         <action
-            android:id="@+id/action_categoryFragment_to_blankFragment2"
+            android:id="@+id/action_categoryFragment_to_blankFragment"
             app:destination="@id/blankFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_categoryDetailActivity"
+            app:destination="@id/categoryDetailActivity" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.example.android_teamfresh_kgi.presentation.BlankFragment"
         android:label="BlankFragment" />
+    <activity
+        android:id="@+id/categoryDetailActivity"
+        android:name="com.example.android_teamfresh_kgi.presentation.categorydetail.CategoryDetailActivity"
+        android:label="CategoryDetailActivity" />
 
 </navigation>

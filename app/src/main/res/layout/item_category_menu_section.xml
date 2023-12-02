@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewmodel"
+            type="com.example.android_teamfresh_kgi.presentation.category.CategoryViewModel" />
 
         <variable
             name="menu"
@@ -15,7 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{() ->viewmodel.openMajorMenu(menu)}"
+        >
+
+
 
         <ImageView
             android:id="@+id/iv_category_image"
