@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface QuickMenuCheckApi {
-    @GET("app/main-infos/quick-menu")
+    @GET("/app/main-infos/quick-menu")
     suspend fun getQuickMenu():Response<QuickMenuResponse>
 
 }
