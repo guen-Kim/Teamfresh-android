@@ -70,4 +70,7 @@ dependencies {
     //okHttp
     implementation(OkHttp.OKHTTP)
     implementation(OkHttp.LOGGING_INTERCEPTOR)
+
+    // Glide
+    implementation(Glide.GLIDE_VERSION)
 }
