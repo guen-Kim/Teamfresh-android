@@ -32,8 +32,11 @@ class CategoryFragment() : BaseFragment<FragmentCategoryBinding>(R.layout.fragme
 
     //onCreateView
     override fun init() {
-        //init databinding
+        // init databinding
         binding.fragment = this
+        // LiveData 객체 범위 = fragment 수명주기
+        binding.lifecycleOwner = viewLifecycleOwner
+
 
         notiBage = LayoutInflater.from(requireContext())
             .inflate(R.layout.notification_badge, null) as ConstraintLayout
