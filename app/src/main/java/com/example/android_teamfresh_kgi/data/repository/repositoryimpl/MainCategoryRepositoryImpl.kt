@@ -1,4 +1,4 @@
-package com.example.android_teamfresh_kgi.data.repository
+package com.example.android_teamfresh_kgi.data.repository.repositoryimpl
 
 import com.example.android_teamfresh_kgi.data.mapper.Mapper
 import com.example.android_teamfresh_kgi.data.repository.remote.datasource.MajorCategoryDataSource
@@ -18,13 +18,13 @@ class MainCategoryRepositoryImpl @Inject constructor(
     MainCategoryRepository {
 
     override suspend fun checkMajorCategory(remoteErrorEmitter: RemoteErrorEmitter): DomainMajorCategoryResponse? {
-        return Mapper.MajorCategoryMapper(
+        return Mapper.majorCategoryMapper(
             majorCategoryDataSource.checkMajorCategory(remoteErrorEmitter)
         )
     }
 
     override suspend fun checkQuickMenu(remoteErrorEmitter: RemoteErrorEmitter): DomainQuickMenuResponse? {
-        return Mapper.QuickMenuResponseMapper(
+        return Mapper.quickMenuResponseMapper(
             quickMenuDataSource.checkQuickMenuDataSource(remoteErrorEmitter)
         )
     }
