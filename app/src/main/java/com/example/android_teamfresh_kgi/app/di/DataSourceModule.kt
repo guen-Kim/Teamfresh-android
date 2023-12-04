@@ -1,9 +1,12 @@
 package com.example.android_teamfresh_kgi.app.di
 
+import com.example.android_teamfresh_kgi.data.repository.remote.api.DetailCategoryCheckApi
 import com.example.android_teamfresh_kgi.data.repository.remote.api.MajorCategoryCheckApi
 import com.example.android_teamfresh_kgi.data.repository.remote.api.QuickMenuCheckApi
+import com.example.android_teamfresh_kgi.data.repository.remote.datasource.DetailCategoryDataSource
 import com.example.android_teamfresh_kgi.data.repository.remote.datasource.MajorCategoryDataSource
 import com.example.android_teamfresh_kgi.data.repository.remote.datasource.QuickMenuDataSource
+import com.example.android_teamfresh_kgi.data.repository.remote.datasourceimpl.DetailCategoryDataSourceImpl
 import com.example.android_teamfresh_kgi.data.repository.remote.datasourceimpl.MajorCategoryDataSourceImpl
 import com.example.android_teamfresh_kgi.data.repository.remote.datasourceimpl.QuickMenuDataSourceImpl
 import dagger.Module
@@ -27,5 +30,12 @@ object DataSourceModule {
     fun bindMajorCategoryDataSource(majorCategoryCheckApi: MajorCategoryCheckApi): MajorCategoryDataSource {
         return MajorCategoryDataSourceImpl(majorCategoryCheckApi)
     }
+
+    @Provides
+    @Singleton
+    fun bindDetailCategoryDataSource(detailCategoryCheckApi: DetailCategoryCheckApi): DetailCategoryDataSource {
+        return DetailCategoryDataSourceImpl(detailCategoryCheckApi)
+    }
+
 
 }
