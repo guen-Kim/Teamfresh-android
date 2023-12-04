@@ -1,14 +1,16 @@
 package com.example.android_teamfresh_kgi.presentation.categorydetail
 
-import android.graphics.Color
-import android.util.Log
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android_teamfresh_kgi.R
 import com.example.android_teamfresh_kgi.databinding.ItemCategoryDetailBinding
 import com.example.android_teamfresh_kgi.domain.model.DomainAppSubDispClasInfo
 
 class CategoryDetailAdapter(
+    private val context : Context,
     private val viewModel: CategoryDetailViewModel,
     private val listener: OnItemClickListener
 ) :
@@ -52,10 +54,9 @@ class CategoryDetailAdapter(
 
             if (selectPos == position) {
                 // 선택된 item 이라면
-                binding.tvName.setBackgroundColor(Color.BLACK)
+                binding.tvName.setTextColor(getColor(context, R.color.black))
             } else {
-                binding.tvName.setBackgroundColor(Color.WHITE)
-
+                binding.tvName.setTextColor(getColor(context, R.color.text_gray))
             }
 
 

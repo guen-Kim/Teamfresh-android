@@ -43,7 +43,7 @@ class CategoryDetailActivity :
     private fun setRecyclerView() {
         binding.rvCategoryDetail
 
-        val categoryAdapter = CategoryDetailAdapter(viewModel, object : CategoryDetailAdapter.OnItemClickListener {
+        val categoryAdapter = CategoryDetailAdapter(this, viewModel, object : CategoryDetailAdapter.OnItemClickListener {
             override fun setOnItemClickListener(item: DomainAppSubDispClasInfo){
 
             }
