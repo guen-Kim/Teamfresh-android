@@ -20,12 +20,13 @@
             android:layout_height="wrap_content"
             app:layout_collapseMode="pin"
             app:menu="@menu/menu_toolbar"
-            app:navigationIcon="@drawable/arrow_back_24">
+            app:navigationIcon="@drawable/icon_back_left">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
                 tools:text="농축수산물" />
 
@@ -36,9 +37,9 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:backgroundTint="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
@@ -50,12 +51,13 @@
 
                     <!-- parallax: 스크롤 시 접힘 -->
                     <androidx.recyclerview.widget.RecyclerView
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="3"
-                        tools:listitem="@layout/item_category_detail_title"
                         android:id="@+id/rv_category_detail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:showDividers="middle"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:listitem="@layout/item_category_detail" />
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>

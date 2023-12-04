@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android_teamfresh_kgi.domain.usecaseimpl.CheckMainCategoryUseCase
+import com.example.android_teamfresh_kgi.domain.usecase.CheckMainCategoryUseCase
 import com.example.android_teamfresh_kgi.domain.utils.ErrorType
 import com.example.android_teamfresh_kgi.domain.utils.RemoteErrorEmitter
 import com.example.android_teamfresh_kgi.domain.utils.ScreenState
@@ -41,7 +41,7 @@ class CategoryViewModel @Inject constructor(private val mainCategoryUseCase: Che
     private var _openQuickMenuEvent = MutableLiveData<Event<String>>()
     val openQuickMenuEvent: LiveData<Event<String>> get() = _openQuickMenuEvent
 
-    //MajorMenu item state
+    //majorMenu item state
     private var _openMajorMenuEvent = MutableLiveData<Event<CategoryMenu>>()
     val openMajorMenuEvent: LiveData<Event<CategoryMenu>> get() = _openMajorMenuEvent
 

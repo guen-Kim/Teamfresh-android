@@ -2,15 +2,19 @@ package com.example.android_teamfresh_kgi.data.mapper
 
 import com.example.android_teamfresh_kgi.data.model.MajorCategoryResponse
 import com.example.android_teamfresh_kgi.data.model.QuickMenuResponse
+import com.example.android_teamfresh_kgi.data.model.DetailCategoryResponse
+import com.example.android_teamfresh_kgi.domain.model.DomainAppSubDispClasInfo
+import com.example.android_teamfresh_kgi.domain.model.DomainDispClasData
 import com.example.android_teamfresh_kgi.domain.model.DomainDispClasItem
 import com.example.android_teamfresh_kgi.domain.model.DomainMajorCategoryResponse
 import com.example.android_teamfresh_kgi.domain.model.DomainMajorDispClasItem
 import com.example.android_teamfresh_kgi.domain.model.DomainQuickMenuResponse
+import com.example.android_teamfresh_kgi.domain.model.DomainDetailCategoryResponse
 
 /* data Model to domain Model */
 object Mapper {
 
-    fun MajorCategoryMapper(majorCartegoryResponse: MajorCategoryResponse?): DomainMajorCategoryResponse? {
+    fun majorCategoryMapper(majorCartegoryResponse: MajorCategoryResponse?): DomainMajorCategoryResponse? {
         return if (majorCartegoryResponse != null) {
             val data = mutableListOf<DomainMajorDispClasItem>()
             majorCartegoryResponse.data.forEach {
@@ -32,7 +36,7 @@ object Mapper {
         }
     }
 
-    fun QuickMenuResponseMapper(quickMenuResponse: QuickMenuResponse?): DomainQuickMenuResponse? {
+    fun quickMenuResponseMapper(quickMenuResponse: QuickMenuResponse?): DomainQuickMenuResponse? {
         return if (quickMenuResponse != null) {
 
             val data = mutableListOf<DomainDispClasItem>()
@@ -56,4 +60,33 @@ object Mapper {
             quickMenuResponse
         }
     }
+
+    fun subCategoryResponseMapper(detailCategoryResponse: DetailCategoryResponse?): DomainDetailCategoryResponse? {
+        return if (detailCategoryResponse != null) {
+
+            val dispClassInfoList = mutableListOf<DomainAppSubDispClasInfo>()
+
+            detailCategoryResponse.data.appSubDispClasInfoList.forEach {
+                dispClassInfoList.add(
+                    DomainAppSubDispClasInfo(
+                        dispClasSeq = it.dispClasSeq,
+                        subDispClasNm = it.subDispClasNm,
+                        prntsDispClasSeq = it.prntsDispClasSeq,
+                        dispClasCd = it.dispClasCd,
+                        dispClasLvl = it.dispClasLvl,
+                    )
+                )
+            }
+
+            val dispClasData =
+                DomainDispClasData(detailCategoryResponse.data.dispClasNm, dispClassInfoList)
+
+            DomainDetailCategoryResponse(data = dispClasData, detailCategoryResponse.message)
+        } else {
+            detailCategoryResponse
+        }
+
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.android_teamfresh_kgi.domain.usecaseimpl
+package com.example.android_teamfresh_kgi.domain.usecase
 
 import com.example.android_teamfresh_kgi.domain.model.DomainMajorCategoryResponse
 import com.example.android_teamfresh_kgi.domain.model.DomainQuickMenuResponse
