@@ -71,7 +71,8 @@ object Coroutines {
 object NavComponent {
     const val NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$NAV_VERSION"
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAV_VERSION"
-    const val NAVIGATION_FEATURE = "androidx.navigation:navigation-dynamic-features-fragment:$NAV_VERSION"
+    const val NAVIGATION_FEATURE =
+        "androidx.navigation:navigation-dynamic-features-fragment:$NAV_VERSION"
     const val NAVIGATION_KOTLIN = "androidx.fragment:fragment-ktx:1.5.4"
 }
 
@@ -79,4 +80,11 @@ object TestTool {
     const val JUNIT = "junit:junit:4.+"
     const val ANDROID_X_JUNIT = "androidx.test.ext:junit:1.1.3"
     const val ANDROID_X_ESPRESSO = "androidx.test.espresso:espresso-core:3.4.0"
+}
+
+
+object Paging {
+    const val PAING = "3.2.1"
+    const val PAGING_COMMON = "androidx.paging:paging-common:$PAING"
+    const val PAGING_RUMTIME = "androidx.paging:paging-runtime-ktx:$PAING"
 }
