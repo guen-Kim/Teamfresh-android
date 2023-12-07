@@ -73,4 +73,14 @@ dependencies {
 
     // Glide
     implementation(Glide.GLIDE_VERSION)
+
+    // Paging3
+    implementation(Paging.PAGING_COMMON) // Domain Layer을 위한 의존성
+    implementation(Paging.PAGING_RUMTIME)
+
+
+    // StickyScrollView
+    implementation("com.github.amarjain07:StickyScrollView:1.0.3")
+
+
 }
