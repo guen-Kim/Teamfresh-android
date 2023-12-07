@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:orientation="vertical"
         tools:context=".presentation.categorydetail.CategoryDetailActivity">
 
@@ -18,7 +17,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_collapseMode="pin"
             app:menu="@menu/menu_toolbar"
             app:navigationIcon="@drawable/icon_back_left">
 
@@ -34,13 +32,13 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/Appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
 
@@ -49,24 +47,21 @@
                     android:layout_height="wrap_content"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                    <!-- parallax: 스크롤 시 접힘 -->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_category_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:showDividers="middle"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_collapseMode="pin"
+                        app:layout_collapseParallaxMultiplier="1.0"
                         app:spanCount="3"
                         tools:listitem="@layout/item_category_detail" />
-
-
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
                 <TextView
                     android:id="@+id/tv_product_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
                     android:textColor="@color/black"
                     tools:text="100건의 상품" />
 
@@ -118,21 +113,16 @@
             </com.google.android.material.appbar.AppBarLayout>
 
 
-            <androidx.core.widget.NestedScrollView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_prodect_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_prodect_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    tools:listitem="@layout/item_product_detail" />
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:spanCount="2"
+                tools:listitem="@layout/item_product_detail" />
 
 
-            </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>
 </layout>
