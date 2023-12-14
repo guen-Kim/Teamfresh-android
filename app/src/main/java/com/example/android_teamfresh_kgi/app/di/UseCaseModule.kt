@@ -1,10 +1,13 @@
 package com.example.android_teamfresh_kgi.app.di
 
+import com.example.android_teamfresh_kgi.domain.repository.CategoryProductRepository
 import com.example.android_teamfresh_kgi.domain.repository.DetailCategoryRepository
 import com.example.android_teamfresh_kgi.domain.repository.MainCategoryRepository
+import com.example.android_teamfresh_kgi.domain.usecase.CheckCategoryProductUseCase
 import com.example.android_teamfresh_kgi.domain.usecase.CheckDetailCategoryUseCase
 import com.example.android_teamfresh_kgi.domain.usecaseimpl.CheckMainCategoryUseCaseImpl
 import com.example.android_teamfresh_kgi.domain.usecase.CheckMainCategoryUseCase
+import com.example.android_teamfresh_kgi.domain.usecaseimpl.CheckCategoryProductUseCaseImpl
 import com.example.android_teamfresh_kgi.domain.usecaseimpl.CheckDetailCategoryUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -28,4 +31,15 @@ object UseCaseModule {
     fun provideDetailCategoryUseCase(detailCategoryRepository: DetailCategoryRepository): CheckDetailCategoryUseCase {
         return CheckDetailCategoryUseCaseImpl(detailCategoryRepository)
     }
+
+    @Provides
+    @Singleton
+    fun provideCategoryProductUseCase(categoryProductRepository: CategoryProductRepository): CheckCategoryProductUseCase {
+        return CheckCategoryProductUseCaseImpl(categoryProductRepository)
+    }
+
+
+
+
+
 }

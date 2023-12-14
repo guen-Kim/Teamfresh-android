@@ -3,17 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.example.android_teamfresh_kgi.presentation.categorydetail.CategoryDetailViewModel" />
+
         <variable
             name="subCategory"
             type="com.example.android_teamfresh_kgi.domain.model.DomainAppSubDispClasInfo" />
     </data>
 
     <LinearLayout
+        android:onClick="@{() -> viewModel.onCategoryDetailClick(subCategory, position)}"
+        android:id="@+id/ll_container"
         android:background="@drawable/item_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_margin="10dp"
             android:id="@+id/tv_name"
             tools:text="전체"
             android:text="@{subCategory.subDispClasNm}"

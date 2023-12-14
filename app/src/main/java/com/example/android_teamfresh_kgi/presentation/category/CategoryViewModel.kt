@@ -122,6 +122,7 @@ class CategoryViewModel @Inject constructor(private val mainCategoryUseCase: Che
     }
 
 
+    // Safe call API 오류 메세지 및 에러 타입
     override fun onError(msg: String) {
         apiErrorMesses = msg
 

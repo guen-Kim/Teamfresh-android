@@ -14,8 +14,7 @@ import javax.inject.Inject
 class MainCategoryRepositoryImpl @Inject constructor(
     private val majorCategoryDataSource: MajorCategoryDataSource,
     private val quickMenuDataSource: QuickMenuDataSource
-) :
-    MainCategoryRepository {
+) : MainCategoryRepository {
 
     override suspend fun checkMajorCategory(remoteErrorEmitter: RemoteErrorEmitter): DomainMajorCategoryResponse? {
         return Mapper.majorCategoryMapper(

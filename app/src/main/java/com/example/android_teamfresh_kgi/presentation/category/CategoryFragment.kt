@@ -90,7 +90,7 @@ class CategoryFragment() : BaseFragment<FragmentCategoryBinding>(R.layout.fragme
 
     private fun setMenuClickEvent() {
         viewModel.openQuickMenuEvent.observe(viewLifecycleOwner) {
-            shortShowToast("개발 중")
+            shortShowToast(getString(R.string.toast_message_dev))
         }
 
         viewModel.openMajorMenuEvent.observe(viewLifecycleOwner, EventObserver{
@@ -117,7 +117,7 @@ class CategoryFragment() : BaseFragment<FragmentCategoryBinding>(R.layout.fragme
                 // 알림 메세지가 있다고 가정 ...
                 menuBell.actionView = notiBage // 뱃지 달기
                 notiBage.setOnClickListener {
-                    shortShowToast("개발 중")
+                    shortShowToast(getString(R.string.toast_message_dev))
                 }
             }
 
@@ -125,12 +125,12 @@ class CategoryFragment() : BaseFragment<FragmentCategoryBinding>(R.layout.fragme
                 // 메뉴 선택시 핸들링
                 when (menuItem.itemId) {
                     R.id.toolbar_menu_bell -> {
-                        shortShowToast("개발 중")
+                        shortShowToast(getString(R.string.toast_message_dev))
                         return true
                     }
 
                     R.id.toolbar_menu_setting -> {
-                        shortShowToast("개발 중")
+                        shortShowToast(getString(R.string.toast_message_dev))
                         return true
                     }
 

@@ -79,8 +79,7 @@ dependencies {
     implementation(Paging.PAGING_RUMTIME)
 
 
-    // StickyScrollView
-    implementation("com.github.amarjain07:StickyScrollView:1.0.3")
-
+    // lottie
+    implementation("com.airbnb.android:lottie:6.2.0")
 
 }

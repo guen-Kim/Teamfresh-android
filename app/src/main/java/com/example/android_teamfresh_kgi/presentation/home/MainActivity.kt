@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.navigation_main)
 
         // app themes 색상 참조 X
-        bottomNavigationView.itemIconTintList = null
+        //bottomNavigationView.itemIconTintList = null
 
         val navController =
             supportFragmentManager.findFragmentById(R.id.container_main)?.findNavController()

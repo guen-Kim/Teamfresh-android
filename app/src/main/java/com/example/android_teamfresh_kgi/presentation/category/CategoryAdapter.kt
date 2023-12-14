@@ -59,6 +59,9 @@ class CategoryAdapter(private val viewModel: CategoryViewModel) : RecyclerView.A
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return categoryItems[position].hashCode().toLong()
+    }
     override fun getItemCount(): Int {
         return categoryItems.size
     }

@@ -5,11 +5,15 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.android_teamfresh_kgi.presentation.categorydetail.CategoryDetailViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical"
         tools:context=".presentation.categorydetail.CategoryDetailActivity">
 
@@ -17,6 +21,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             app:menu="@menu/menu_toolbar"
             app:navigationIcon="@drawable/icon_back_left">
 
@@ -26,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
+                android:textSize="18dp"
                 tools:text="농축수산물" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -39,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:elevation="0dp">
 
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -53,48 +60,61 @@
                         android:layout_height="wrap_content"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_collapseMode="pin"
-                        app:layout_collapseParallaxMultiplier="1.0"
                         app:spanCount="3"
                         tools:listitem="@layout/item_category_detail" />
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-                <TextView
-                    android:id="@+id/tv_product_count"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    tools:text="100건의 상품" />
+                    android:background="@drawable/item_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_product_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="13dp"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        tools:text="100건의 상품" />
+                </LinearLayout>
 
 
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
                     android:checkedButton="@id/rbtn_recommend_order"
+                    android:onCheckedChanged="@{(view, checkedId) -> viewModel.onRadioBtnSelected(view, checkedId)}"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/rbtn_recommend_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginRight="8dp"
                         android:button="@drawable/selector_radio_button"
                         android:text=" 추천순"
                         android:textColor="@drawable/selector_radio_text" />
 
                     <RadioButton
                         android:id="@+id/rbtn_sale_order"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginRight="8dp"
                         android:button="@drawable/selector_radio_button"
                         android:text=" 판매량순"
                         android:textColor="@drawable/selector_radio_text" />
 
                     <RadioButton
                         android:id="@+id/rbtn_low_price_order"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginRight="8dp"
                         android:button="@drawable/selector_radio_button"
                         android:text=" 낮은가격순"
                         android:textColor="@drawable/selector_radio_text" />
@@ -103,7 +123,7 @@
                         android:id="@+id/rbtn_high_price_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginRight="8dp"
                         android:button="@drawable/selector_radio_button"
                         android:text=" 높은가격순"
                         android:textColor="@drawable/selector_radio_text" />
@@ -117,6 +137,8 @@
                 android:id="@+id/rv_prodect_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:spanCount="2"

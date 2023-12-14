@@ -1,6 +1,7 @@
 package com.example.android_teamfresh_kgi.app.di
 
 import com.example.android_teamfresh_kgi.app.utils.Utils.BASE_URL
+import com.example.android_teamfresh_kgi.data.repository.remote.api.CategoryProductCheckApi
 import com.example.android_teamfresh_kgi.data.repository.remote.api.DetailCategoryCheckApi
 import com.example.android_teamfresh_kgi.data.repository.remote.api.MajorCategoryCheckApi
 import com.example.android_teamfresh_kgi.data.repository.remote.api.QuickMenuCheckApi
@@ -73,6 +74,13 @@ object NetworkModule {
         return retrofit.create(DetailCategoryCheckApi::class.java)
     }
 
+
+    @Provides
+    @Singleton
+    //DetailCategoryCheckApi interface 의존성 주입
+    fun provideCategoryProductCheckApiService(retrofit: Retrofit): CategoryProductCheckApi {
+        return retrofit.create(CategoryProductCheckApi::class.java)
+    }
 
 
     // 저수준 네트워킹 로깅 확인

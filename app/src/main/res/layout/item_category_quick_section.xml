@@ -15,10 +15,9 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_margin="8dp"
         android:onClick="@{() ->viewmodel.openQuickMenu(quick.quickMenuNm)}"
         android:orientation="vertical">
 
@@ -27,6 +26,8 @@
             imageUrl="@{quick.quickMenuImgPath}"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
             tools:src="@drawable/category_sample" />
 
         <TextView
